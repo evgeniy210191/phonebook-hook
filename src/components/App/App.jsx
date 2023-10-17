@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container } from './App.styled';
 import { nanoid } from 'nanoid';
 import ContactList from 'components/ContactList';
@@ -18,7 +18,6 @@ function App() {
         ]
   );
   const [filter, setFilter] = useState('');
-  const firstRef = useRef(true);
   useEffect(() => {
     const getLocalData = () => {
       return JSON.parse(localStorage.getItem('contacts'));
@@ -29,10 +28,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (firstRef.current) {
-      firstRef.current = false;
-      return;
-    }
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
@@ -52,6 +47,7 @@ function App() {
       number: number,
     };
     setContacts(prevState => [newContact, ...prevState]);
+    console.log(contacts);
     return;
   };
 
