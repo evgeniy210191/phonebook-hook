@@ -18,14 +18,6 @@ function App() {
         ]
   );
   const [filter, setFilter] = useState('');
-  useEffect(() => {
-    const getLocalData = () => {
-      return JSON.parse(localStorage.getItem('contacts'));
-    };
-    if (getLocalData() && getLocalData().length !== 0) {
-      setContacts(getLocalData());
-    }
-  }, []);
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
